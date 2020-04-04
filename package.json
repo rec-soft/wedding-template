@@ -1,0 +1,16 @@
+{
+  "name": "wedding-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-sample": "node build.js",
+    "build": "node build.js config.real.js",
+    "upload": "gsutil -m cp -r public/ gs://$BUCKET_NAME"
+  },
+  "author": "github.com/beekley",
+  "license": "Apache License 2.0",
+  "dependencies": {
+    "pug": "^2.0.4"
+  }
+}

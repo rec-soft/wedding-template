@@ -1,0 +1,38 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="robots" content="noindex")
+    title #{names[0] + ' & ' + names[1] + ' - Save the Date'}
+    link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css")
+    link(rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png")
+  body
+    div(class='columns is-vcentered')
+      
+      //- Left image
+      div(class='column' style='background-image: url('+imageLink+'); background-size: cover; background-repeat:   no-repeat; background-position: center center;')
+        div(class='hero is-info is-fullheight' style='background-color:transparent;')
+    
+      //- Event info
+      div(class='column')
+      
+        //- Logistics
+        div(class='section has-text-centered')
+          p(class='subtitle is-5 is-italic') Please save the date
+          p(class='title has-text-black is-1') #{names[0] + ' & ' + names[1]}
+          p(class='subtitle is-5 is-italic') are getting married!
+          p
+          a
+            p(class='title is-4 has-text-black')
+              span(style='font-weight: 600;') #{date}
+            p(class='subtitle is-4 has-text-black')
+              span(style='font-weight: 600;') #{location}
+        //- Links
+        div(class='section')
+          div(class='buttons is-centered')
+            a(class='button is-rounded is-primary is-medium' target="_blank" href=save.calendarLink) 📅 Save the Date
+            a(class='button is-rounded is-primary is-medium' target="_blank" href=save.formLink) 💌 Send us your Address
+        //- Footer
+        div(class='section has-text-centered')
+          p(class='subtitle is-5 is-italic') Invitation to follow
+          p(class='subtitle is-6 ') !{save.footnote}

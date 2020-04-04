@@ -1,0 +1,150 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="robots" content="noindex")
+    title #{names[0] + ' & ' + names[1] + ' - Wedding'}
+    link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css")
+    link(rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png")
+  body
+    //- Navbar - Desktop
+    div(class='navbar is-fixed-top is-hidden-mobile is-hidden-tablet-only')
+      div(class='navbar-brand')
+        a(class='navbar-item' href=homeUrl) #{homeTitle}
+      div(class='navbar-menu')
+        div(class='navbar-end')
+          div(class='navbar-item')
+            a(class='button is-light' target="_blank" href=rsvpUrl) RSVP
+          a(class='navbar-item' href='#schedule') Schedule
+          a(class='navbar-item' href='#story') Story
+          a(class='navbar-item' href='#faqs') FAQ
+          a(class='navbar-item' href='#registry') Registry
+    
+    //- Navbar - Mobile
+    div(class='navbar is-hidden-desktop')
+      div(class='navbar-brand')
+        div(class='navbar-item')
+          a(class='button is-light' target="_blank" href=rsvpUrl) RSVP
+        a(class='navbar-item' href=homeUrl) #{homeTitle}
+          
+    //- Splash page
+    div(class='columns is-vcentered' id='home' style=style.backgroundStyle)
+    
+      //- Event info
+      div(class='column has-text-centered')
+        
+        //- Card version
+        div(class='section is-hidden-desktop')
+        div(class='container is-fluid')
+          div(class='box')
+            p(class='title is-1') #{names[0] + ' & ' + names[1]}
+              p(class='subtitle is-4 is-italic') are getting married!
+              p
+              p(class='title is-4 has-text-black') #{date}
+              p(class='subtitle is-4 has-text-black') #{location}
+        div(class='section is-hidden-desktop')
+
+      //- Right image
+      //- images use background-image to alow for stretching of non-fitting images
+      div(class='column' style='background-image: url('+imageLink+'); background-size: cover; background-repeat:   no-repeat; background-position: center center;')
+        div(class='hero is-info is-fullheight' style='background-color:transparent;')
+
+    //- Event Details
+    div(class='section' id='schedule')
+      p(class='title is-1 has-text-centered') Event Schedule
+      each event in sections.events 
+        div(class='section has-text-centered')
+          div(class='columns is-centered')
+            div(class='column is-6')
+              p(class='title is-3') #{event.title}
+              p(class='subtitle is-5') #{event.description}
+              p(class='subtitle is-6') Dress Code: #{event.dressCode}
+              div(class='columns is-centered')
+                div(class='column')
+                  div(class='content')
+                    p !{event.time}
+                  a(class='button is-rounded is-light' target="_blank" href=event.calendarUrl) 📅 Calendar
+                div(class='column')
+                  div(class='content')
+                    p !{event.location}
+                  div(class='buttons is-centered')
+                    a(class='button is-rounded is-light' target="_blank" href=event.mapUrl) 📍Map
+  
+    //- Photo share link
+    div(class='section' style=style.backgroundStyle)
+      div(class='container has-text-centered')
+        p(class='title')
+          span Please 
+          a(target="_blank" href=homeUrl) <b>share your photos</b> 
+          span from the celebrations!
+  
+    //- Interstitial pic
+    div(class='section')
+      div(class='columns is-centered')
+        div(class='column is-8')
+          div(class='card')
+            div(class='card-image')
+              div(class='image is-3by2' style='background-image: url('+style.interstitialPhoto1+'); background-size: cover; background-repeat:   no-repeat; background-position: center center;')
+  
+    //- Story / pics
+    div(class='section' id='story' style=style.backgroundStyle)
+      div(class='section')
+        div(class='container has-text-centered')
+          p(class='title is-1') #{sections.photos.description}
+      div(class='columns')
+        each image in sections.photos.images
+          div(class='column is-one-third')
+            div(class='card')
+              div(class='card-image')
+                div(class='image is-1by1' style='background-image: url('+image.src+'); background-size: cover; background-repeat:   no-repeat; background-position: center center;')
+              div(class='card-content')
+                p(class='title has-text-centered is-4') #{image.year}
+                p(class= 'has-text-justified') #{image.description}
+      div(class='buttons is-centered')
+        a(class='button is-rounded is-white is-large' target="_blank" href=sections.photos.link) 📸 More Photos!
+                
+    //- FAQs
+    div(class='section' id='faqs')
+      div(class='columns is-vcentered')
+        div(class='column is-5')
+          div(class='card')
+            div(class='card-image')
+              div(class='image is-2by3' style='background-image: url('+style.interstitialPhoto2+'); background-size: cover; background-repeat:   no-repeat; background-position: center center;')
+        div(class='column')
+          div(class='container')
+            each section in sections.details
+              div(class='title is-2') #{section.title}
+              each faq in section.faqs
+                div(class='content')
+                  p(class='title is-4') #{faq.question}
+                  p(class='subtitle is-6') #{faq.answer}
+    
+    //- Registry
+    div(class='section' id='registry' style=style.backgroundStyle)
+      div(class='section')
+        div(class='columns is-centered')
+          div(class='column is-5')
+            div(class='container has-text-centered')
+              p(class='title is-1') Registry
+              p(class='subtitle is-5') !{sections.registry.description}
+      div(class='columns is-centered')
+        each registry in sections.registry.stores
+          div(class='column is-2')
+            div(class='card')
+              div(class='card-footer')
+                a(class= 'card-footer-item has-text-centered' target='_blank' href=registry.link) #{registry.description}
+    
+    div(class='section')
+      div(class='columns is-centered')
+        div(class='column is-8')
+          div(class='card')
+            div(class='card-image')
+              div(class='image is-3by2' style='background-image: url('+style.interstitialPhoto3+'); background-size: cover; background-repeat:   no-repeat; background-position: center center;')
+      
+    //- RSVP link alt 3
+    div(class='section' style=style.backgroundStyle)
+      div(class='container has-text-centered')
+        p(class='title')
+          span Please 
+          a(target="_blank" href=rsvpUrl) <b>RSVP</b> 
+          span  by #{rsvpDate}
