@@ -11,6 +11,6 @@
   "author": "github.com/beekley",
   "license": "Apache License 2.0",
   "dependencies": {
-    "pug": "^2.0.4"
+    "pug": "^3.0.1"
   }
 }
